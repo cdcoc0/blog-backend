@@ -3,6 +3,20 @@ import * as postsCtrl from './posts.ctrl';
 
 const posts = new Router();
 
+posts.get('/', postsCtrl.list);
+posts.post('/', postsCtrl.write);
+
+//const post = new Router(); // /api/posts/:id
+posts.get('/:id', postsCtrl.checkObjectId, postsCtrl.read);
+posts.delete('/:id', postsCtrl.checkObjectId, postsCtrl.remove);
+posts.patch('/:id', postsCtrl.checkObjectId, postsCtrl.update);
+//posts.put('/:id', postsCtrl.replace);
+
+//posts.use('/:id', postsCtrl.checkObjectId, post.routes());
+
+
+export default posts;
+
 // const printInfo = ctx => {
 //     ctx.body = {
 //         method: ctx.method,
@@ -10,12 +24,3 @@ const posts = new Router();
 //         params: ctx.params
 //     };
 // };
-
-posts.get('/', postsCtrl.list);
-posts.post('/', postsCtrl.write);
-posts.get('/:id', postsCtrl.read);
-posts.delete('/:id', postsCtrl.remove);
-//posts.put('/:id', postsCtrl.replace);
-posts.patch('/:id', postsCtrl.update);
-
-export default posts;
