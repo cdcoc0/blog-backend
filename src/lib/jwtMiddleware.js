@@ -8,7 +8,7 @@ const jwtMiddleware = async (ctx, next) => {
         // eslint-disable-next-line no-undef
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         ctx.state.user = {
-            id: decoded._id,
+            _id: decoded._id,
             username: decoded.username
         };
 
